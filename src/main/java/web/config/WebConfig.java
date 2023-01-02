@@ -10,11 +10,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
-
+//Конфигурационный Java-класс, так же вместо конфигурации в xml файле
 @Configuration
-@EnableWebMvc
+@EnableWebMvc //Аннотация показывает что у нас WebMvc приложение
 @ComponentScan("web")
-public class WebConfig implements WebMvcConfigurer {
+public class WebConfig implements WebMvcConfigurer { //Интерфейс для настройки под себя SpringMVC
 
     private final ApplicationContext applicationContext;
 
@@ -40,7 +40,7 @@ public class WebConfig implements WebMvcConfigurer {
         return templateEngine;
     }
 
-
+    //Метод Thymeleaf, вместо стандартного шаблонизатора
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();

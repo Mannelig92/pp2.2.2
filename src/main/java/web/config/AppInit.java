@@ -2,6 +2,8 @@ package web.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+// наследование от класса AbstractAnnotationConfig... предоставляет запуск приложения и 3 метода для переопределения
+// служит как замена xml файлу конфигурации
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     // Метод, указывающий на класс конфигурации
@@ -12,6 +14,7 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
 
 
     // Добавление конфигурации, в которой инициализируем ViewResolver, для корректного отображения jsp.
+    // Подставляем свой класс конфигурации
     @Override
     protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[]{
@@ -20,7 +23,9 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     }
 
 
-    /* Данный метод указывает url, на котором будет базироваться приложение */
+    /* Данный метод указывает url, на котором будет базироваться приложение
+       Тут подставляем / - все http запросы от пользователя посылаем на Диспетчер сервлет
+      */
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
