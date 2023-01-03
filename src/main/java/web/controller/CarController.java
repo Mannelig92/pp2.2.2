@@ -15,8 +15,13 @@ import java.util.List;
 public class CarController {
     private CarServiceImpl csm = new CarServiceImpl();
 
+    /*
+    Создаём маппинг для ссылки /cars
+    @RequestParam для ввода после ссылки - /cars?count=число
+    Model - это логика работы с данными
+     */
     @GetMapping(value = "/cars")
-    public String cars(@RequestParam("count") int count, Model model) {
+    public String cars(@RequestParam(value = "count", defaultValue = "5") int count, Model model) {
         ArrayList<Car> cars = new ArrayList<>();
         Collections.addAll(cars,
                 new Car("BMW", 2134, "Black"),
@@ -24,12 +29,12 @@ public class CarController {
                 new Car("Toyota", 976, "Green"),
                 new Car("Suzuki", 1020, "White"),
                 new Car("Lada", 2107, "Pink"));
+        //необходимые условия для вывода
+        if (count < 0) count = 0;
+        if (count > 5) count = 5;
 
-        int countOfCars = count;
-        if (countOfCars < 0) countOfCars = 0;
-        if (countOfCars > cars.size()) countOfCars = cars.size();
-
-        List<Car> limitCars = csm.countOfCars(cars, countOfCars);
+        List<Car> limitCars = csm.countOfCars(cars, count); //Вызываем сортированный список из CarServiceImpl
+        //Добавляем в модель, с аттрибутом limitCars, который используем в cars.html как список и сам список limitCars
         model.addAttribute("limitCars", limitCars);
         return "cars"; //Возвращаем имя html файла страницы
     }
