@@ -29,6 +29,7 @@ public class WebConfig implements WebMvcConfigurer { //Интерфейс для настройки п
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/WEB-INF/pages/");
         templateResolver.setSuffix(".html");
+        templateResolver.setCharacterEncoding("UTF-8"); //Строчка для вывода html на русском
         return templateResolver;
     }
 
@@ -46,5 +47,7 @@ public class WebConfig implements WebMvcConfigurer { //Интерфейс для настройки п
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
         registry.viewResolver(resolver);
+        resolver.setCharacterEncoding("UTF-8"); //Строчка для вывода html на русском
+        resolver.setContentType("text/html; charset=UTF-8"); //Строчка для вывода html на русском
     }
 }

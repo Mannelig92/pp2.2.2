@@ -1,16 +1,13 @@
 package model;
 
-import java.util.Collections;
-import java.util.List;
-
 public class Car {
     private String model;
-    private int mark;
+    private int number;
     private String color;
 
-    public Car(String model, int mark, String color) {
+    public Car(String model, int number, String color) {
         this.model = model;
-        this.mark = mark;
+        this.number = number;
         this.color = color;
     }
 
@@ -22,12 +19,12 @@ public class Car {
         this.model = model;
     }
 
-    public int getMark() {
-        return mark;
+    public int getNumber() {
+        return number;
     }
 
-    public void setMark(int mark) {
-        this.mark = mark;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public String getColor() {
@@ -42,7 +39,7 @@ public class Car {
     public String toString() {
         return "Car{" +
                 "model='" + model + '\'' +
-                ", mark=" + mark +
+                ", number=" + number +
                 ", color='" + color + '\'' +
                 '}';
     }

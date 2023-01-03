@@ -4,10 +4,12 @@ import model.Car;
 
 import java.util.List;
 
-public class CarServiceImpl implements CarService{
+public class CarServiceImpl implements CarService {
 
     @Override
-    public int countOfCars(List<Car> list, int numOfCars) {
-        return 0;
+    public List<Car> countOfCars(List<Car> list, int numOfCars) {
+        return list.stream()
+                .limit(numOfCars)
+                .toList();
     }
 }
